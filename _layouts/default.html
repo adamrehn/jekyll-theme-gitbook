@@ -1,0 +1,40 @@
+{% include internal/header.html %}
+				
+				{% capture toc %}{% include thirdparty/toc.html html=content h_min=2 h_max=4 %}{% endcapture %}
+				{% assign toc = toc | strip %}
+				
+				<div class="contents">
+					
+					{% if toc.size > 0 %}
+					<div class="inner">
+						<p class="heading"><span class="icon fas {% if site.theme-settings.fontawesome.icons.contents %}{{ site.theme-settings.fontawesome.icons.contents | escape }}{% else %}fa-list{% endif %}"></span> Contents</p>
+						{{ toc }}
+						<ul><li><a href="#top"><span class="icon fas {% if site.theme-settings.fontawesome.icons.top %}{{ site.theme-settings.fontawesome.icons.top | escape }}{% else %}fa-arrow-up{% endif %}"></span> Return to top</a></li></ul>
+					</div>
+					{% endif %}
+					
+				</div>
+				
+				<article>
+					
+					{% if page.chapter %}<p class="chapter" id="top">{% if page.icon %}{% assign components = page.url | split: "/" %}<span class="icon icon-{{ components[-2] | escape }} {{ page.icon | escape }}"></span>{% else %}<span class="icon fas {% if site.theme-settings.fontawesome.icons.page %}{{ site.theme-settings.fontawesome.icons.page | escape }}{% else %}fa-angle-double-right{% endif %}"></span>{% endif %} {{ page.chapter | escape }}</p>{% endif %}
+					<h1>{{ page.title | escape }}</h1>
+					
+					{% if toc.size > 0 %}
+					<div class="contents-inline">
+						
+						<h2>Contents</h2>
+						{{ toc }}
+						
+					</div>
+					{% endif %}
+					
+					{% include internal/postprocessing.html content=content %}
+					
+					{% include internal/prev-next.html %}
+					
+					{% include internal/copyright.html %}
+					
+				</article>
+				
+{% include internal/footer.html %}

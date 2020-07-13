@@ -1,0 +1,12 @@
+<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/svg+xml" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.svg %}{{ site.theme-settings.favicon.svg | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.svg{% endif %}">
+		<link rel="icon" type="image/png" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.png %}{{ site.theme-settings.favicon.png | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.png{% endif %}">
+		<link rel="apple-touch-icon" type="image/png" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.png %}{{ site.theme-settings.favicon.png | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.png{% endif %}">
+		
+		<meta property="og:title" content="{% if page.title and page.title != "Index" %}{{ page.title | escape }}{% else %}{{ page.chapter | escape }}{% endif %}{% if page.title or page.chapter %} | {% endif %}{{ site.title | escape }}">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="{{ site.url | uri_escape }}{{ page.url | uri_escape }}">
+		<meta property="og:image" content="{% if site.theme-settings.opengraph %}{{ site.theme-settings.opengraph | uri_escape }}{% else %}{{ site.url | uri_escape }}/assets/images/opengraph.png{% endif %}">
+		<meta property="og:description" content="{{ page.blurb | escape }}">

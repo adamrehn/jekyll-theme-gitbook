@@ -1,0 +1,27 @@
+<nav class="collapse">
+	<div class="inner">
+	{% include hooks/navbar-prehook.html %}
+	
+	{% assign documents = site.documents | where: "collection", site.theme-settings.collection | where_exp: "page", "page.chapnum != null" %}
+	{% if page.subsite %}
+		{% assign documents = documents | where: "subsite", page.subsite %}
+	{% endif %}
+	{% assign pages = documents | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
+	{% assign indices = documents | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
+	
+	{% for index in indices %}
+		<p class="chapter">{% if index.icon %}{% assign components = index.url | split: "/" %}<span class="icon icon-{{ components[-2] | escape }} {{ index.icon | escape }}"></span> {% endif %}{{ index.chapter | escape | replace: " ", "&nbsp;" }}</p>
+		<ul>
+		{% if site.theme-settings.indices == true and index.layout == "chapter-index" %}
+			<li{% if index.url == page.url %} class="selected"{% endif %}><a href="{{ index.url | replace: "/index", "" | relative_url | uri_escape }}">Index</a></li>
+		{% endif %}
+		{% assign chapter_pages = pages | where: "chapter", index.chapter %}
+		{% for p in chapter_pages %}
+			<li{% if p.url == page.url %} class="selected"{% endif %}><a href="{{ p.url | relative_url | uri_escape }}">{{ p.title | escape | replace: " ", "&nbsp;" }}</a></li>
+		{% endfor %}
+		</ul>
+	{% endfor %}
+	
+	{% include hooks/navbar-posthook.html %}
+	</div>
+</nav>

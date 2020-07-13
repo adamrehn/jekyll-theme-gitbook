@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		{% include internal/meta.html %}
+		
+		<title>{% if page.title and page.title != "Index" %}{{ page.title | escape }}{% else %}{{ page.chapter | escape }}{% endif %}{% if page.title or page.chapter %} | {% endif %}{{ site.title | escape }}</title>
+		
+		{% if site.theme-settings.fontawesome.kit %}
+		<script src="{{ site.theme-settings.fontawesome.kit | uri_escape }}" crossorigin="anonymous"></script>
+		{% elsif site.theme-settings.fontawesome.local != true %}
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		{% endif %}
+		
+		{% include hooks/head-posthook.html %}
+	</head>
+	
+	<body>
+		
+		<header>
+			
+			<span class="navtoggle">
+				<a data-toggle="collapse" href="nav" role="button" aria-expanded="false" aria-controls="nav"><span class="fas fa-fw {% if site.theme-settings.fontawesome.icons.nav %}{{ site.theme-settings.fontawesome.icons.nav | escape }}{% else %}fa-bars{% endif %}" title="Toggle navigation"></span></a>
+			</span>
+			
+			<a href="{{ "/" | relative_url }}"><img class="logo" src="{% if site.theme-settings.logo %}{{ site.theme-settings.logo | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/logo.svg{% endif %}" alt="{{ site.title | escape }}"></a>
+			
+			<span class="to-top">
+				<a href="#top" role="button"><span class="fas fa-fw {% if site.theme-settings.fontawesome.icons.top %}{{ site.theme-settings.fontawesome.icons.top | escape }}{% else %}fa-arrow-up{% endif %}" title="Return to top"></span></a>
+			</span>
+			
+		</header>
+		
+		<div class="wrapper">
+			
+			{% include internal/navbar.html %}
+			
+			<main>
+				

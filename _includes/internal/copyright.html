@@ -1,0 +1,7 @@
+<footer>
+	
+	{% assign year = site.time | date: '%Y' | plus: 0 %}
+	<div><p>Copyright &copy; {% if site.theme-settings.copyright.year != year %}{{ site.theme-settings.copyright.year }} - {% endif %}{{ year }}, {% include internal/markdown-fragment.html fragment=site.theme-settings.copyright.author %}. {% if site.theme-settings.copyright.license %}{% include internal/markdown-fragment.html fragment=site.theme-settings.copyright.license %}{% else %}All rights reserved.{% endif %}</p>{% include hooks/copyright-posthook.html %}</div>
+	<p class="to-top"><a href="#top"><span class="icon fas {% if site.theme-settings.fontawesome.icons.top %}{{ site.theme-settings.fontawesome.icons.top | escape }}{% else %}fa-arrow-up{% endif %}"></span></a></li></p>
+	
+</footer>

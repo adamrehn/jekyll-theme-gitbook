@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="0; url={{ include.redirect }}">
+		<meta name="robots" content="noindex">
+		
+		<title>Redirecting...</title>
+		
+		<link rel="canonical" href="{{ include.redirect }}">
+		<script type="text/javascript">window.location.href = "{{ include.redirect }}"</script>
+	</head>
+	
+	<body>
+		<a href="{{ include.redirect }}">Click here if you are not automatically redirected.</a>
+	</body>
+</html>

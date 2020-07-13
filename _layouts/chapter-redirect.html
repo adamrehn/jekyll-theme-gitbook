@@ -1,0 +1,7 @@
+{% assign pages = site.documents | where: "collection", site.theme-settings.collection | where: "chapnum", page.chapnum | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
+{% if page.subsite %}
+	{% assign pages = pages | where: "subsite", page.subsite %}
+{% endif %}
+
+{% assign redirect = pages[0].url | relative_url | uri_escape %}
+{% include internal/redirect.html redirect=redirect %}

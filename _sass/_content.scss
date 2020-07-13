@@ -1,0 +1,400 @@
+.icon
+{
+	display: inline-block;
+	padding-right: 0.25rem;
+}
+
+.custom-alert
+{
+	display: flex;
+	align-items: stretch;
+	background-color: var(--main-background);
+	border-radius: 0.5rem;
+	margin: 2.5rem 0.5rem;
+}
+
+.custom-alert .alert-icon, .custom-alert .content {
+	padding: 1.5rem;
+}
+
+.custom-alert .alert-icon
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--icon-background);
+	color: var(--icon-colour);
+	text-align: center;
+}
+
+.custom-alert .alert-icon, .custom-alert .content p, .custom-alert .content ol, .custom-alert .content ul {
+	margin: 0;
+}
+
+.custom-alert .content p
+{
+	font-size: 0.95rem;
+	text-align: left;
+}
+
+.custom-alert .content p + p, .custom-alert .content p + ul, .custom-alert .content ul + p {
+	margin-top: 1rem;
+}
+
+.custom-alert.info
+{
+	--main-background: rgb(231, 245, 255);
+	--icon-background: rgb(116, 192, 252);
+	--icon-colour: rgb(19, 109, 200);
+	color: rgb(0, 55, 114);
+}
+
+.custom-alert.warning
+{
+	--main-background: rgb(255, 249, 219);
+	--icon-background: rgb(255, 224, 102);
+	--icon-colour: rgb(242, 152, 4);
+	color: rgb(97, 73, 3);
+}
+
+header
+{
+	box-shadow: $box-shadow-colour 0 0.25rem 0.75rem 0;
+	border-bottom: 1px solid rgb(212, 218, 223);
+	background-color: #fafafa;
+}
+
+header .logo {
+	height: $header-height - ($header-padding * 2);
+}
+
+header .navtoggle a, header .to-top a {
+	padding: $header-padding;
+}
+
+header .navtoggle a, header .navtoggle a:hover, header .to-top a, header .to-top a:hover
+{
+	text-decoration: none;
+	color: #000;
+}
+
+nav, .contents {
+	font-size: 0.9rem;
+}
+
+nav
+{
+	border-right: 1px solid $default-border-colour;
+	background-color: rgb(245, 247, 249);
+}
+
+nav .chapter, .contents .heading, article .chapter, .prev-next a .label, .prev-next a .label:hover
+{
+	color: #8a96a1;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin: 0;
+}
+
+nav ul + .chapter {
+	margin-top: 2rem;
+}
+
+nav ul, nav ul li, .contents ul, .contents ul li
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.contents ul li ul {
+	padding-left: 1.25rem;
+}
+
+.contents ul li {
+	max-width: 18rem;
+}
+
+nav ul li a, nav ul li a:hover,
+.contents ul li a, .contents ul li a:hover,
+footer a, footer a:hover,
+.prev-next a
+{
+	color: rgb(59, 69, 78);
+	text-decoration: none;
+}
+
+nav ul:last-child {
+	padding-bottom: $header-height / 2;
+}
+
+nav .chapter, nav ul li a, .contents .heading, .contents ul li a {
+	padding: 0.5rem 1rem;
+}
+
+nav .chapter, nav ul li a {
+	padding-right: $sidebar-padding;
+}
+
+nav ul li a
+{
+	border: 1px solid transparent;
+	font-weight: 600;
+	cursor: pointer;
+	display: block;
+}
+
+nav ul li a:hover {
+	background-color: $default-border-colour;
+}
+
+nav ul li.selected a, nav ul li.selected a:hover, .contents ul li a:hover, .prev-next a:hover {
+	color: $link-hover-colour;
+}
+
+nav ul li.selected a, nav ul li.selected a:hover
+{
+	background-color: #fff;
+	border: 1px solid $default-border-colour;
+}
+
+.contents .inner {
+	border-left: 1px solid $default-border-colour;
+}
+
+nav ul li a, nav ul li.selected a, nav ul li.selected a:hover {
+	border-right: none;
+}
+
+/*
+	Offset heading anchors to prevent them from being covered by the sticky header
+	(Adapted from the code in this SO answer: <https://stackoverflow.com/a/22655654>)
+*/
+article :target::before
+{
+	content: "";
+	display: block;
+	height: $header-height * 1.5;
+	margin: #{0 - ($header-height * 1.5)} 0 0;
+}
+
+article strong, article table th {
+	font-weight: 600;
+}
+
+article .chapter
+{
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+article .contents-inline + * {
+	margin-top: 6rem;
+}
+
+article h1, article h2, article h3, article h4 {
+	font-weight: 600;
+}
+
+article h1 {
+	margin-bottom: 5rem;
+}
+
+article h2
+{
+	margin-top: 6rem;
+	margin-bottom: 2rem;
+}
+
+article h2:first-child {
+	margin-top: 0;
+}
+
+article h3
+{
+	font-size: 1.5rem;
+	margin-top: 3rem;
+	margin-bottom: 2rem;
+}
+
+article h4
+{
+	font-size: 1.1rem;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+}
+
+article p {
+	line-height: 1.6rem;
+}
+
+article li {
+	line-height: 1.75rem;
+}
+
+article p + ul {
+	margin: 2rem 0;
+}
+
+article .table-wrapper
+{
+	margin: 2rem 0;
+	overflow-x: auto;
+}
+
+article table
+{
+	border-color: $default-border-colour;
+	border-collapse: collapse;
+	border-spacing: 0;
+	min-width: 100%;
+	margin: 0;
+}
+
+article table th, article table td
+{
+	border: 1px solid $default-border-colour;
+	padding: 0.75rem 1rem;
+}
+
+article table thead tr, article table th {
+	background-color: #fafafa;
+}
+
+article figure {
+	margin: 3rem 0.5rem;
+}
+
+article figcaption
+{
+	text-align: center;
+	font-weight: 600;
+	margin-top: 1rem;
+}
+
+article blockquote
+{
+	border-left: 0.25rem solid #ccc;
+	margin: 2rem 1rem;
+	padding-left: 1rem;
+	color: #777;
+}
+
+article p code, article li code, article th code, article td code
+{
+	background-color: rgba(0, 0, 0, 0.04);
+	padding: 0.25rem 0.5rem;
+	border-radius: 0.25rem;
+	display: inline-block;
+	margin: 0 0.1rem;
+	color: #000;
+}
+
+article li code {
+	line-height: 1.25rem;
+}
+
+article a code
+{
+	display: inline;
+	margin: 0;
+	color: inherit;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+article pre
+{
+	background-color: rgb(247, 247, 247);
+	border: 1px solid rgb(214, 216, 219);
+	border-radius: 0.25rem;
+	padding: 1.5rem;
+	line-height: 1.5rem;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+article pre, article pre code {
+	font-size: 0.95rem;
+}
+
+article .footnote:before {
+	content: "[";
+}
+
+article .footnote:after {
+	content: "]";
+}
+
+.detail-list li p:first-child
+{
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.prev-next {
+	margin-top: $header-height * 1.5;
+}
+
+.prev-next a
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	border: 1px solid $default-border-colour;
+	box-shadow: $box-shadow-colour 0 0 0.5rem 0;
+	transition: all 0.3s ease;
+	border-radius: 0.25rem;
+	padding: 1rem;
+}
+
+.prev-next a:hover {
+	border: 1px solid $link-hover-colour;
+}
+
+.prev-next a .icon
+{
+	flex: 0 0 auto;
+	padding: 0 0.5rem;
+}
+
+.prev-next a div {
+	flex: 1;
+}
+
+.prev-next a p {
+	margin: 0;
+}
+
+.previous a p {
+	text-align: right;
+}
+
+.next a p {
+	text-align: left;
+}
+
+.prev-next a .label {
+	font-size: 0.9rem;
+}
+
+.prev-next a .title {
+	font-weight: 600;
+}
+
+footer
+{
+	font-size: 0.9rem;
+	color: rgb(157, 170, 182);
+	border-top: 2px solid $default-border-colour;
+	margin-top: 2rem;
+	padding-top: 2rem;
+}
+
+footer p {
+	margin: 0;
+}
+
+footer .to-top {
+	padding-left: 2rem;
+}

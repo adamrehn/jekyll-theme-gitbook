@@ -1,0 +1,5 @@
+{% comment %}
+
+Note that we explicitly exclude newlines in this code, because their presence causes issues when nesting alerts inside markdown lists.
+
+{% endcomment %}<div class="custom-alert {{ include.type | escape }}"><p class="alert-icon"><span class="fa-2x fas {{ include.icon | escape }}" alt="{{ include.alt | escape }}" title="{{ include.alt | escape }}"></span></p><div class="content"><div>{{ include.content | markdownify | strip_newlines }}</div></div></div>

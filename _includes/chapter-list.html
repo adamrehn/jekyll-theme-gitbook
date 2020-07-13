@@ -1,0 +1,12 @@
+<ul class="detail-list">
+{% assign indices = site.documents | where: "collection", site.theme-settings.collection | where_exp: "page", "page.chapnum != null" | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
+{% if page.subsite %}
+	{% assign indices = indices | where: "subsite", page.subsite %}
+{% endif %}
+{% for index in indices %}
+	<li>
+		<p><a href="{{ index.url | remove: "/index" | relative_url | uri_escape }}">{{ index.chapter | escape | replace: " ", "&nbsp;" }}</a></p>
+		{% assign blurb = index.content | strip %}{% if blurb.size > 0 %}<p>{{ blurb | replace: '<p>', '' | replace: '</p>', '' }}</p>{% endif %}
+	</li>
+{% endfor %}
+</ul>

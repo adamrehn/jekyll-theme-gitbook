@@ -1,0 +1,7 @@
+{% assign indices = site.documents | where: "collection", site.theme-settings.collection | where_exp: "page", "page.chapnum != null" | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
+{% if page.subsite %}
+	{% assign indices = indices | where: "subsite", page.subsite %}
+{% endif %}
+
+{% assign redirect = indices[0].url | replace: "/index", "" | relative_url | uri_escape %}
+{% include internal/redirect.html redirect=redirect %}

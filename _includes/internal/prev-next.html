@@ -1,0 +1,55 @@
+{% assign documents = site.documents | where: "collection", site.theme-settings.collection | where_exp: "page", "page.chapnum != null" %}
+{% if page.subsite %}
+	{% assign documents = documents | where: "subsite", page.subsite %}
+{% endif %}
+{% assign pages = documents | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
+{% assign indices = documents | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
+{% assign sorted = "" | split: "" %}
+
+{% for index in indices %}
+	{% assign chapter_pages = pages | where: "chapnum", index.chapnum %}
+	{% assign sorted = sorted | concat: chapter_pages %}
+{% endfor %}
+
+{% assign previous = nil %}
+{% for p in sorted %}
+	{% if p.chapnum < page.chapnum or (p.chapnum == page.chapnum and p.pagenum < page.pagenum) %}
+		{% assign previous = p %}
+	{% endif %}
+{% endfor %}
+
+{% assign sorted = sorted | reverse %}
+{% assign next = nil %}
+{% for p in sorted %}
+	{% if p.chapnum > page.chapnum or (p.chapnum == page.chapnum and p.pagenum > page.pagenum) %}
+		{% assign next = p %}
+	{% endif %}
+{% endfor %}
+
+<div class="prev-next">
+	
+	{% if previous != nil %}
+	<div class="previous">
+		<a href="{{ previous.url | relative_uri | uri_escape }}">
+			<span class="icon fas {% if site.theme-settings.fontawesome.icons.left %}{{ site.theme-settings.fontawesome.icons.left | escape }}{% else %}fa-arrow-left{% endif %}"></span>
+			<div>
+				<p class="label">Previous: {{ previous.chapter | escape }}</p>
+				<p class="title">{{ previous.title | escape }}</p>
+			</div>
+		</a>
+	</div>
+	{% endif %}
+	
+	{% if next != nil %}
+	<div class="next">
+		<a href="{{ next.url | relative_uri | uri_escape }}">
+			<div>
+				<p class="label">Next: {{ next.chapter | escape }}</p>
+				<p class="title">{{ next.title | escape }}</p>
+			</div>
+			<span class="icon fas {% if site.theme-settings.fontawesome.icons.right %}{{ site.theme-settings.fontawesome.icons.right | escape }}{% else %}fa-arrow-right{% endif %}"></span>
+		</a>
+	</div>
+	{% endif %}
+	
+</div>

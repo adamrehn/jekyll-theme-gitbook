@@ -1,0 +1,23 @@
+{% include internal/header.html %}
+				
+				<article>
+					
+					<h1>{{ page.chapter | escape }}</h1>
+					
+					{% assign content = content | strip %}{% if content.size > 0 %}{{ content }}{% endif %}
+					
+					<h2>Contents</h2>
+					
+					{% assign pages = site.documents | where: "collection", site.theme-settings.collection | where: "chapnum", page.chapnum | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
+					{% if page.subsite %}
+						{% assign pages = pages | where: "subsite", page.subsite %}
+					{% endif %}
+					<ul>
+						{% for page in pages %}<li><a href="{{ page.url | uri_escape }}">{{ page.title | escape }}</a></li>{% endfor %}
+					</ul>
+					
+					{% include internal/copyright.html %}
+					
+				</article>
+				
+{% include internal/footer.html %}
