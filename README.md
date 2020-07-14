@@ -186,8 +186,6 @@ defaults:
       # An icon is optional and will be displayed next to the chapter name if specified
       icon: "fas fa-school"
       
-      # A blurb is optional and will be displayed if you generate a list of chapters with the `chapter-list.html` include
-      blurb: "This category covers basic topics."
   -
     scope:
       path: "_collections/_categories/intermediate"
@@ -195,7 +193,6 @@ defaults:
       chapter: "Intermediate"
       chapnum: 2
       icon: "fas fa-university"
-      blurb: "This category covers intermediate topics."
   -
     scope:
       path: "_collections/_categories/advanced"
@@ -203,7 +200,6 @@ defaults:
       chapter: "Advanced"
       chapnum: 3
       icon: "fas fa-graduation-cap"
-      blurb: "This category covers advanced topics."
 ```
 
 ### Site structure
@@ -235,21 +231,25 @@ Page content goes here.
 
 #### Content structure: chapters
 
-Each chapter should also include an `index.html` file, which should specify either the `chapter-index` or `chapter-redirect` layout and nothing else:
+Each chapter should also include an `index.html` file, which should specify either the `chapter-index` or `chapter-redirect` layout and can optionally include a chapter description:
 
 ```yaml
 ---
 layout: chapter-redirect
 ---
+
+Optional description of this chapter goes here.
 ```
 
 The layout you choose will determine the site's behaviour when navigating to the index for a chapter (which is resolved automatically when referencing a subdirectory's path without a trailing page path.) Choose the `chapter-index` layout if you would like the web browser to display a list of links to the pages in the chapter, or the `chapter-redirect` layout if you would like the web browser to automatically redirect to the first page in the chapter.
 
-If you use the `chapter-index` layout for a chapter and the global setting `theme-settings.indices` is set to `true` then a navigation link will be generated for the chapter index.
+If you choose to provide a chapter description then this will be displayed on the chapter's index page when using the `chapter-index` layout, and will also be displayed under the chapter's name if you generate a list of chapters with the `chapter-list.html` include (which is designed to be used on the front page of a site.)
+
+If you use the `chapter-index` layout for a chapter and the global setting `theme-settings.indices` is set to `true` then a link will be generated for the chapter index in the site's navigation sidebar.
 
 #### Content structure: site root
 
-You can specify custom content for the site's front page by providing an `index.html` or `index.md` file in the root of your site's filesystem directory. The `chapter-list.html` include that ships with the theme is designed for use from the site root, and generates a list of chapters for you (with per-chapter `blurb` values included if they were specified.)
+You can specify custom content for the site's front page by providing an `index.html` or `index.md` file in the root of your site's filesystem directory. The `chapter-list.html` include that ships with the theme is designed for use from the site root, and generates a list of chapters for you (with per-chapter descriptions included if they were specified.)
 
 If you do not want to have a custom front page then you can use the `root-redirect` layout to instruct web browsers to automatically redirect to the index of the first chapter (which may in turn redirect to the first page of that chapter if you specified that behaviour, as discussed in the previous section):
 
