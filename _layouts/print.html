@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		{% include internal/meta.html %}
+		
+		<title>{{ site.title | escape }}</title>
+		
+		{% if site.theme-settings.fontawesome.kit %}
+		<script src="{{ site.theme-settings.fontawesome.kit | uri_escape }}" crossorigin="anonymous"></script>
+		{% elsif site.theme-settings.fontawesome.local != true %}
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		{% endif %}
+		
+		{% include hooks/head-posthook.html %}
+	</head>
+	
+	<body class="print">
+		
+		<main>
+			
+			{% comment %}
+				
+				Loop through our chapters and their pages, building one large markdown string suitable for TOC generation.
+				We want this to all be a single string to ensure unique IDs are still generated even if there are headings with duplicate text.
+				
+				Note that we use HTML comments to inject our <section> and <article> tags, since the markdown processor will preserve the comments verbatim
+				and we can then strip them away to leave our HTML tags intact in the final output without being erroneously wrapped in <p> tags.
+				
+			{% endcomment %}
+			
+			{% assign markdown = "" %}
+			{% assign indices = site.documents | where: "collection", site.theme-settings.collection | where_exp: "page", "page.chapnum != null" | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
+			{% if page.subsite %}
+				{% assign indices = indices | where: "subsite", page.subsite %}
+			{% endif %}
+			{% for index in indices %}
+				
+				{% assign pages = site.documents | where: "collection", site.theme-settings.collection | where: "chapnum", index.chapnum | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
+				{% if page.subsite %}
+					{% assign pages = pages | where: "subsite", page.subsite %}
+				{% endif %}
+				
+{% capture content %}
+
+<!--[[<section class="chapter">]]-->
+
+# Chapter {{ index.chapnum }}: {{ index.chapter | escape }}
+
+{% assign description = index.content | strip %}{% if description.size > 0 %}{{ description }}{% endif %}
+
+<!--[[</section>]]-->
+
+{% for page in pages %}
+
+<!--[[<article class="page">]]-->
+
+# {{ page.title | escape }}
+
+{{ page.content }}
+
+<!--[[</article>]]-->
+
+{% endfor %}
+
+{% endcapture %}
+				
+				{% assign markdown = markdown | append: content %}
+				
+			{% endfor %}
+			
+			{% comment %}
+				
+				Render our generated markdown string and strip away the comment wrappers from our HTML tags.
+				
+			{% endcomment %}
+			{% assign rendered = markdown | markdownify | replace: "<!--[[", "" | replace: "]]-->", "" %}
+			
+			{% comment %}
+				
+				Output our book cover.
+				
+			{% endcomment %}
+			<section class="cover">
+				<h1>{{ site.title | escape }}</h1>
+			</section>
+			
+			{% comment %}
+				
+				Generate our Table of Contents (TOC) using the rendered markdown output and add a CSS class to chapter links.
+				
+			{% endcomment %}
+			<section class="toc">
+				<h1>Contents</h1>
+				{% capture toc %}{% include thirdparty/toc.html html=rendered sanitize=true %}{% endcapture %}
+				{{ toc | replace: '<li><a href="#chapter-', '<li class="chapter-link"><a href="#chapter-' }}
+			</section>
+			
+			{% comment %}
+				
+				Perform postprocessing on the rendered markdown output and print the result.
+				
+			{% endcomment %}
+			{% include internal/postprocessing.html content=rendered %}
+			
+		</main>
+		
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/jquery-3.4.1.min.js"></script>
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/popper.min.js"></script>
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/bootstrap.min.js"></script>
+		<script src="{{ "/" | relative_url }}assets/js/jekyll-theme-gitbook.js"></script>
+		{% include hooks/body-posthook.html %}
+	</body>
+</html>
