@@ -4,6 +4,8 @@ This is a documentation theme for [Jekyll](https://jekyllrb.com/) that takes its
 
 This theme is designed to be highly configurable, whilst providing sensible defaults for most options in order to make it as easy as possible to get up and running quickly. See the [Configuration](#configuration) section for details of the available settings.
 
+**You can view a [live demo of this theme here](https://adamrehn.github.io/jekyll-theme-gitbook-demo) and view the [source code for the demo site here](https://github.com/adamrehn/jekyll-theme-gitbook-demo).**
+
 
 ## Contents
 
