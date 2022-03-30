@@ -130,7 +130,7 @@
 		padding: 0 1.5rem;
 	}
 	
-	article img, article figure, article .table-wrapper {
+	article img, article figure, article .pre-wrapper, article .table-wrapper {
 		max-width: calc((100vw - 3rem) - var(--scrollbar-width));
 	}
 	
@@ -165,7 +165,7 @@
 		padding: 0 $header-height;
 	}
 	
-	article img, article figure, article .table-wrapper {
+	article img, article figure, article .pre-wrapper, article .table-wrapper {
 		max-width: calc((100vw - #{$header-height * 2}) - var(--scrollbar-width));
 	}
 	

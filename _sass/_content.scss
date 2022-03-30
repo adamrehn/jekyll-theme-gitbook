@@ -236,10 +236,12 @@ article p + ul {
 	margin: 2rem 0;
 }
 
-article .table-wrapper
-{
-	margin: 2rem 0;
+article .pre-wrapper, article .table-wrapper {
 	overflow-x: auto;
+}
+
+article .table-wrapper {
+	margin: 2rem 0;
 }
 
 article table
