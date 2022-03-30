@@ -300,7 +300,7 @@ The theme supports the following advanced configuration options:
 
 ## Legal
 
-Copyright &copy; 2020, Adam Rehn. Licensed under the MIT License, see the file [LICENSE](https://github.com/adamrehn/jekyll-theme-gitbook/blob/master/LICENSE) for details.
+Copyright &copy; 2020 - 2022, Adam Rehn. Licensed under the MIT License, see the file [LICENSE](https://github.com/adamrehn/jekyll-theme-gitbook/blob/master/LICENSE) for details.
 
 The following third-party libraries are bundled in the theme's source tree and are covered by their respective licenses:
 
