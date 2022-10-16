@@ -1,9 +1,0 @@
-deploy:
-  provider: rubygems
-  gem: jekyll-theme-gitbook
-  on:
-    tags: true
-  api_key:
-    secure: JYID8Bi4TTYm0aai1kMLPt1ZQPwmpgvdS0BHM92N2gcS7aZ8/jzfJr+XCJkB0FcEYb0HqIilhmV3TzBvRBd0BwVGQ516LuXQ3ASRb9/uM8p/h+w+GlI3V33sgzjmZco23pVm3PF4uPwObvdvdpelHn7IRF//o20tS5IHJ9UefH/ARHytm/vjcQa9sjCVn/Jh8XP3+O5kfXSpythfmlqbUGgIidDqL7hHSxf3XSQ/kbU0obvbA50UZwRznpFbfI57eJtJMeFH9BsAB54QzZdZhZF0iHgbEgfsv3HZaYu72ZAeJ9gpVrKTVzpXfrw6vlwTCI6g+bgH84ixZCO9mdzUlcg95Tkickmm6Lvt62XVa9d7JKPHyLAW/06o1JUrYG69yxOWEjlBlweRq2/QHyI83197IkzwrWn1OVcZmziUTIs0IQglnFyOz8mnoYCp31hAEHnStxOxaBgmYAg3gjD9epjAHv+s0nkCxFSUWp728dUCVGOkAP1aHWShORNcr5oC/OqIv8K1ld914aSr3GN1U3RsWcfxi3pSC4kQwJ9MjyC+apRvms7f2ckKm/0XRoTjkpw63qYs21hSsHOv5h6RwrxoRI8VGgyr+6NEBP6qltdYaeiqA4k/ZDxk6QI7LGs7jS09z6T+Vq44tj1h/RciTJa9cFU2S1DnXJJkGQCbApg=
-script:
-- gem build jekyll-theme-gitbook.gemspec
