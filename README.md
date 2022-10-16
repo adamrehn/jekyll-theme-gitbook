@@ -34,7 +34,7 @@ This theme is designed to be highly configurable, whilst providing sensible defa
 If you are hosting your site on GitHub Pages then add the following line to your site's `_config.yml` file (as per [the documentation](https://docs.github.com/en/github/working-with-github-pages/adding-a-theme-to-your-github-pages-site-using-jekyll)):
 
 ```yaml
-remote_theme: "adamrehn/jekyll-theme-gitbook@v0.0.1"
+remote_theme: "adamrehn/jekyll-theme-gitbook@v0.0.3"
 ```
 
 ### Other hosts (e.g. GitLab Pages)
