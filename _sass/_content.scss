@@ -100,7 +100,7 @@ nav .chapter, nav ul li {
 	max-width: 100%;
 }
 
-nav ul + .chapter {
+nav ul + .chapter, nav details + details {
 	margin-top: 2rem;
 }
 
@@ -128,7 +128,7 @@ footer a, footer a:hover,
 	text-decoration: none;
 }
 
-nav ul:last-child {
+nav .inner > ul:last-child, nav .inner > details:last-child {
 	padding-bottom: $header-height / 2;
 }
 
