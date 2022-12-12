@@ -96,6 +96,10 @@ nav .chapter, .contents .heading, article .chapter, .prev-next a .label, .prev-n
 	margin: 0;
 }
 
+nav .chapter, nav ul li {
+	max-width: 100%;
+}
+
 nav ul + .chapter {
 	margin-top: 2rem;
 }

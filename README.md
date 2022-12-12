@@ -68,8 +68,17 @@ theme-settings:
   collection: "categories"
   
   
-  # Specifies whether navigation links should be generated for chapter index files that use the `chapter-index` layout (OPTIONAL, defaults to false)
-  indices: false
+  # Navigation menu settings (OPTIONAL, only needed if you want to override the defaults)
+  navigation:
+    
+    # Specifies whether navigation links should be generated for chapter index files that use the `chapter-index` layout (OPTIONAL, defaults to false)
+    indices: false
+    
+    # Specifies whether the navigation links for each chapter should be output as collapsible sections using HTML <detail> tags, with chapter headings as <summary> tags (OPTIONAL, defaults to false)
+    collapsible: false
+    
+    # When collapsible sections are enabled, specifies whether sections are collapsed by default (OPTIONAL, defaults to false)
+    collapsed: false
   
   
   # Copyright settings for the page footer (REQUIRED)
@@ -128,7 +137,12 @@ Each key in this structure serves a specific purpose:
 
 - `collection`: the theme uses a book metaphor to describe the structure of content. The site is broken down into a series of "chapters", each containing a series of pages. Of course, this naming convention does not make sense for all sites (for some sites, the "chapters" may in fact be referred to as sections or categories) and so the theme does not force you to adopt the name "chapters" in your filesystem structure. Instead, you can specify any [Jekyll collection](https://jekyllrb.com/docs/collections/) to act as your list of chapters, typically using one subdirectory per chapter to group pages. **You must specify the name of the Jekyll collection as a string value for this key.**
 
-- `indices`: by default, the theme only generates navigation links to each of the pages in each chapter, not to the chapter indices themselves. You can set this key to `true` if you would like to trigger the generation of chapter index navigation links, although note that links are only generated for chapters whose `index.html` files use the `chapter-index` layout and not for chapters whose index use the `chapter-redirect` layout. **This key is optional.**
+- `navigation`: this key groups settings for overriding the behaviour of the site's navigation links. **This key and all of its subkeys are optional:**
+    
+    - Subkey `indices`: by default, the theme only generates navigation links to each of the pages in each chapter, not to the chapter indices themselves. You can set this subkey to `true` if you would like to trigger the generation of chapter index navigation links, although note that links are only generated for chapters whose `index.html` files use the `chapter-index` layout and not for chapters whose index use the `chapter-redirect` layout.
+    
+    - Subkeys `collapsible` and `collapsed`: these subkeys allow you to make the sections of the navigation menu for each chapter collapsible, and specify whether they are collapsed or expanded by default, respectively.
+    
 
 - `copyright`: this key groups settings related to the copyright notice that appears in the footer of all pages. **This key and the `author` and `year` subkeys are required,** whilst the `license` subkey is optional.
 
@@ -247,7 +261,7 @@ The layout you choose will determine the site's behaviour when navigating to the
 
 If you choose to provide a chapter description then this will be displayed on the chapter's index page when using the `chapter-index` layout, and will also be displayed under the chapter's name if you generate a list of chapters with the `chapter-list.html` include (which is designed to be used on the front page of a site.)
 
-If you use the `chapter-index` layout for a chapter and the global setting `theme-settings.indices` is set to `true` then a link will be generated for the chapter index in the site's navigation sidebar.
+If you use the `chapter-index` layout for a chapter and the global setting `theme-settings.navigation.indices` is set to `true` then a link will be generated for the chapter index in the site's navigation sidebar.
 
 #### Content structure: site root
 

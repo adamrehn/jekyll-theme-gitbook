@@ -9,17 +9,29 @@
 	{% assign pages = documents | where_exp: "page", "page.pagenum != null" | sort: "pagenum" %}
 	{% assign indices = documents | where_exp: "page", "page.pagenum == null" | sort: "chapnum" %}
 	
+	{% assign chapter_element = "p" %}
+	{% if site.theme-settings.navigation.collapsible == true %}
+		{% assign chapter_element = "summary" %}
+	{% endif %}
+	
 	{% for index in indices %}
-		<p class="chapter">{% if index.icon %}{% assign components = index.url | split: "/" %}<span class="icon icon-{{ components[-2] | escape }} {{ index.icon | escape }}"></span> {% endif %}{{ index.chapter | escape | replace: " ", "&nbsp;" }}</p>
+		
+		{% if site.theme-settings.navigation.collapsible == true %}<details{% unless site.theme-settings.navigation.collapsed == true %} open="true"{% endunless %}>{% endif %}
+		
+		<{{ chapter_element }} class="chapter">{% if index.icon %}{% assign components = index.url | split: "/" %}<span class="icon icon-{{ components[-2] | escape }} {{ index.icon | escape }}"></span> {% endif %}{{ index.chapter | escape }}</{{ chapter_element }}>
+		
 		<ul>
-		{% if site.theme-settings.indices == true and index.layout == "chapter-index" %}
+		{% if site.theme-settings.navigation.indices == true and index.layout == "chapter-index" %}
 			<li{% if index.url == page.url %} class="selected"{% endif %}><a href="{{ index.url | replace: "/index", "" | relative_url | uri_escape }}">Index</a></li>
 		{% endif %}
 		{% assign chapter_pages = pages | where: "chapter", index.chapter %}
 		{% for p in chapter_pages %}
-			<li{% if p.url == page.url %} class="selected"{% endif %}><a href="{{ p.url | relative_url | uri_escape }}">{{ p.title | escape | replace: " ", "&nbsp;" }}</a></li>
+			<li{% if p.url == page.url %} class="selected"{% endif %}><a href="{{ p.url | relative_url | uri_escape }}">{{ p.title | escape }}</a></li>
 		{% endfor %}
 		</ul>
+		
+		{% if site.theme-settings.navigation.collapsible == true %}</details>{% endif %}
+		
 	{% endfor %}
 	
 	{% include hooks/navbar-posthook.html %}
