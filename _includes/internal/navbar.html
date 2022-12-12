@@ -16,7 +16,7 @@
 	
 	{% for index in indices %}
 		
-		{% if site.theme-settings.navigation.collapsible == true %}<details{% unless site.theme-settings.navigation.collapsed == true %} open="true"{% endunless %}>{% endif %}
+		{% if site.theme-settings.navigation.collapsible == true %}<details{% if site.theme-settings.navigation.collapsed != true or page.chapter == index.chapter %} open="true"{% endif %}>{% endif %}
 		
 		<{{ chapter_element }} class="chapter">{% if index.icon %}{% assign components = index.url | split: "/" %}<span class="icon icon-{{ components[-2] | escape }} {{ index.icon | escape }}"></span> {% endif %}{{ index.chapter | escape }}</{{ chapter_element }}>
 		
