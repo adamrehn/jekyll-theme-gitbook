@@ -14,7 +14,7 @@
 		{% include hooks/head-posthook.html %}
 	</head>
 	
-	<body>
+	<body{% if page.pageclass %} class="{{ page.pageclass | escape }}"{% endif %}>
 		
 		<header>
 			
